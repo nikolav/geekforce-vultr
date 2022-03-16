@@ -1,16 +1,18 @@
 
-(require("dotenv")).config();
+(require("dotenv"))
+  .config({ override: true });
 
-const path          = require("path");
-const { Router }    = require("express");
-const { mongoose }  = require(path.resolve(process.env.APP_PATH, "config", "db.js"));
-const router        = Router();
+const path         = require("path");
+const { Router }   = require("express");
+const { mongoose } = require(
+    path.resolve(process.env.APP_PATH, "config", "db.js"));
+const router       = Router();
 
 
 const User = mongoose.model(process.env.MONGODB_COLLECTION_USERS);
 
 // GET /api
-router.get("/api", (req, res, next) => {
+router.get("/", (req, res, next) => {
   return res.json({
     status        : 0,
     "app.name"    : process.env.APP_NAME,

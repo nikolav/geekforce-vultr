@@ -1,18 +1,18 @@
-(require("dotenv")).config();
+(require("dotenv"))
+  .config({ override: true });
 
-const mongoose   = require("mongoose");
-const { Schema } = mongoose;
+const mongoose = require("mongoose");
 
-
-mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("open", 
   () => console.log("connection.open@mongoose"));
+mongoose.connect(process.env.MONGODB_URI);
 
 
 mongoose.model(
+
     process.env.MONGODB_COLLECTION_USERS, 
 
-    new Schema({
+    new mongoose.Schema({
 
         name: String, 
 
@@ -28,7 +28,8 @@ mongoose.model(
             type      : Date, 
             default   : Date.now, 
             immutable : true, 
-        }
+        },
+        
     }));
 
 
